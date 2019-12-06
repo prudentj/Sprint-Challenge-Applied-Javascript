@@ -18,6 +18,7 @@
     <div class="right-button"> > </div>
   </div>
 */
+//"./assets/carousel/mountains.jpeg"
 linkOne = "./assets/carousel/mountains.jpeg";
 linkTwo = "./assets/carousel/computer.jpeg";
 linkThree = "./assets/carousel/trees.jpeg";
@@ -33,8 +34,12 @@ function carouselMaker(imgOne, imgTwo, imgThree, imgFour){
   const rightButton = document.createElement('div');
   const pics = [pic1, pic2, pic3, pic4];
   var currentPic = 0;
-  const hideShow = ()=>{
-    pics[currentPic].classList.toggle('imgSeen')};
+  //function hideShow(obj){
+  //  eval(`pic${currentPic`})
+  const hide = ()=>{
+    eval(`pic${currentPic+1}`).style.display='none'};
+  const show =()=>{
+    eval(`pic${currentPic+1}`).style.display='block'};
   //assign classes
   carousel.classList.add('carousel');
   leftButton.classList.add('left-button');
@@ -55,23 +60,24 @@ function carouselMaker(imgOne, imgTwo, imgThree, imgFour){
   carousel.appendChild(pic4);
   carousel.appendChild(rightButton);
   //Events
+  show();
   rightButton.addEventListener('click',(event) => {
-    hideShow;
+    hide();
     if (currentPic === 3){
       currentPic = 0;
     }
     else {currentPic++;}
-    hideShow;
+    show();
   });
   leftButton.addEventListener('click', (event)=>{
-    console.log(`Event happened; Current Pic waS ${currentPic}`)
-    hideShow;
+    console.log(`Event happened; Current Pic was ${currentPic}`)
+    hide();
     if (currentPic === 0){
       currentPic = 3;
     }
     else{currentPic -- ;}
-    hideShow;
-    console.log(`Event happened; Current Pic waS ${currentPic}`);
+    show();
+    console.log(`Current Pic is ${currentPic}`);
   })
   //put on DOM
   console.log(carousel);
