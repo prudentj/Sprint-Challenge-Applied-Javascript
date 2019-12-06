@@ -21,9 +21,9 @@
 axios
     .get('https://lambda-times-backend.herokuapp.com/articles')
     .then(response => {
-        console.log(response);
+        //console.log(response);
         const articles =  Object.values( response.data.articles);
-        console.log(articles);
+        //console.log(articles);
         articles.forEach(element => {
             element.forEach(el =>{
                 articleMaker(el);
