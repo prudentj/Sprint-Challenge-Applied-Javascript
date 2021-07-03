@@ -7,6 +7,7 @@
     6. Have fun!
 */
 
+//"carousel-container"
 /* HTML:
   <div class="carousel">
     <div class="left-button"> < </div>
@@ -17,3 +18,71 @@
     <div class="right-button"> > </div>
   </div>
 */
+//"./assets/carousel/mountains.jpeg"
+linkOne = "./assets/carousel/mountains.jpeg";
+linkTwo = "./assets/carousel/computer.jpeg";
+linkThree = "./assets/carousel/trees.jpeg";
+linkFour = "./assets/carousel/turntable.jpeg";
+function carouselMaker(imgOne, imgTwo, imgThree, imgFour){
+  //create Elements
+  const carousel = document.createElement('div');
+  const leftButton = document.createElement('div');
+  const pic1 = document.createElement('img');
+  const pic2 = document.createElement('img');
+  const pic3 = document.createElement('img');
+  const pic4 = document.createElement('img');
+  const rightButton = document.createElement('div');
+  const pics = [pic1, pic2, pic3, pic4];
+  var currentPic = 0;
+  //function hideShow(obj){
+  //  eval(`pic${currentPic`})
+  const hide = ()=>{
+    eval(`pic${currentPic+1}`).style.display='none'};
+  const show =()=>{
+    eval(`pic${currentPic+1}`).style.display='block'};
+  //assign classes
+  carousel.classList.add('carousel');
+  leftButton.classList.add('left-button');
+  rightButton.classList.add('right-button');
+  pic1.classList.add('imgSeen');
+  //assign content/text
+  pic1.src = imgOne;
+  pic2.src = imgTwo;
+  pic3.src = imgThree;
+  pic4.src = imgFour;
+  leftButton.textContent = '<' ;
+  rightButton.textContent = '>' ;
+  //create parent child relations
+  carousel.appendChild(leftButton);
+  carousel.appendChild(pic1);
+  carousel.appendChild(pic2);
+  carousel.appendChild(pic3);
+  carousel.appendChild(pic4);
+  carousel.appendChild(rightButton);
+  //Events
+  show();
+  rightButton.addEventListener('click',(event) => {
+    hide();
+    if (currentPic === 3){
+      currentPic = 0;
+    }
+    else {currentPic++;}
+    show();
+  });
+  leftButton.addEventListener('click', (event)=>{
+    console.log(`Event happened; Current Pic was ${currentPic}`)
+    hide();
+    if (currentPic === 0){
+      currentPic = 3;
+    }
+    else{currentPic -- ;}
+    show();
+    console.log(`Current Pic is ${currentPic}`);
+  })
+  //put on DOM
+  console.log(carousel);
+  document.querySelector(".carousel-container").appendChild(carousel);
+  
+  
+}
+carouselMaker(linkOne,linkTwo, linkThree, linkFour);
